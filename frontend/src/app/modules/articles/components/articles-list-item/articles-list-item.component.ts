@@ -13,21 +13,8 @@ export class ArticlesListItemComponent implements OnInit {
   @Input() articles: IArticle[] = [];
 
   updateArticleLink = `${environment.SITE_URL}/articles/update/`;
-  constructor(
-    // private articleService: ArticlesService
-    ) {
-    }
-
-  ngOnInit() {
-    // this.articles = this.articles.map(article => {
-    //   let fd = article.date?.toISOString();
-    //   return {
-    //     ...article,
-    //     formatDate: fd
-    //   }
-    // });
-    // console.log('this.articles', this.articles);
-  }
+  constructor( ) { }
+  ngOnInit() { }
 
   trackById(idx: number, data: { id: string }) {
     return data.id;

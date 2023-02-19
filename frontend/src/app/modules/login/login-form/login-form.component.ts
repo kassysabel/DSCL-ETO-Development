@@ -54,7 +54,8 @@ export class LoginFormComponent  implements OnInit  {
           .pipe(takeUntil(this._destroy$))
           .subscribe({
             next: (data:any) => {
-                const aExpDate = new Date(Date.now() + (100000*1000));
+                // Expire in 5 minutes
+                const aExpDate = new Date(Date.now() + (300*1000));
                 this.cookieService.set('userToken', data.id, { expires: aExpDate });
 
                 this.usersService.updateLogInState();

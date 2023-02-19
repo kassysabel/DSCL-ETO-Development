@@ -10,8 +10,15 @@ export class ArticlesHeaderComponent  implements OnInit {
   private readonly _destroy$ = new Subject<boolean>();
   @Input() userDetails = {
     username: '',
+    email: '',
   };
+  colors = [
+    'green', 'orange', 'red', 'blue', 'teal', 'cyan', 'pink', 'fuchsia'
+  ];
+  bgcolors = '';
   constructor( ) { }
-  ngOnInit() { }
+  ngOnInit() {
+    this.bgcolors = 'bg-'+this.colors[Math.floor(Math.random()*this.colors.length)]+'-300';
+  }
 
 }

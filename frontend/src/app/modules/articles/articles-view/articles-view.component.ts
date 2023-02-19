@@ -25,6 +25,7 @@ export class ArticlesViewComponent  implements OnInit {
     id: '',
     title: '',
     body: '',
+    formatDate: ''
   };
   articlesLink = `${environment.SITE_URL}/articles`;
   updateArticleLink = `${environment.SITE_URL}/articles/update/`;
@@ -33,7 +34,6 @@ export class ArticlesViewComponent  implements OnInit {
   }
 
   viewArticle(articleId = '') {
-    console.log('data-articleId',articleId);
     if(articleId == '') {
       this.error = {
         status: true,
@@ -43,13 +43,16 @@ export class ArticlesViewComponent  implements OnInit {
     }
     this.articleService.getArticle(articleId)
     .pipe(takeUntil(this._destroy$)).subscribe({
-      next: (data) => {
-        this.article = data;
-        console.log('data-viewArticle',data);
+      next: (data: any) => {
+
+        let fd = new Date(data.date);
+        this.article = {
+          ...data,
+          formatDate: fd.toDateString()
+        }
       },
       error: (err) => {
         console.log('err',err);
-        // this.changeDetector.detectChanges();
       }
     })
 

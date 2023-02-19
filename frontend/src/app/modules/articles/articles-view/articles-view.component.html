@@ -15,7 +15,10 @@
   </div>
   <div class="border-t border-gray-200">
     <div class="bg-gray-50 px-4 py-5 text-gray-900">
-      <h1 class="block text-xl mb-4">{{ article.title }}</h1>
+      <h1 class="block text-3xl uppercase">{{ article.title }}</h1>
+      <span class="text-xs font-medium text-gray-400 block mt-2 mb-4"
+        >Date Updated: {{ article.formatDate }}</span
+      >
       <div>{{ article.body }}</div>
     </div>
   </div>
