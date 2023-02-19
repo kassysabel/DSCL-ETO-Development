@@ -1,0 +1,22 @@
+<div
+  class="min-h-screen flex flex-col items-center justify-center bg-gray-300 py-32"
+>
+  <!-- <div
+    class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md"
+  > -->
+  <div class="container mx-auto">
+    <container-element [ngSwitch]="innerPage">
+      <app-articles-header [userDetails]="userInfo"></app-articles-header>
+      <app-articles-create *ngSwitchCase="'add'"></app-articles-create>
+      <app-articles-update
+        *ngSwitchCase="'update'"
+        [articleId]="articleId"
+      ></app-articles-update>
+      <app-articles-view
+        *ngSwitchCase="'view'"
+        [articleId]="articleId"
+      ></app-articles-view>
+      <app-articles-list *ngSwitchDefault></app-articles-list>
+    </container-element>
+  </div>
+</div>
