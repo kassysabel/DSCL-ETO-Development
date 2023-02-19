@@ -10,6 +10,8 @@ import { ArticlesViewComponent } from './articles-view/articles-view.component';
 import { ArticlesFormComponent } from './components/articles-form/articles-form.component';
 import { ArticlesHeaderComponent } from './articles-header/articles-header.component';
 import { ArticlesSearchFormComponent } from './components/articles-search-form/articles-search-form.component';
+import { ArticlesDatepickerComponent } from './components/articles-datepicker/articles-datepicker.component';
+import { DatepickerDirective } from '@core/directives/datepicker.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { ArticlesSearchFormComponent } from './components/articles-search-form/a
     ArticlesFormComponent,
     ArticlesHeaderComponent,
     ArticlesSearchFormComponent,
+    ArticlesDatepickerComponent,
+    DatepickerDirective,
   ],
   imports: [
     CommonModule,
@@ -35,6 +39,7 @@ import { ArticlesSearchFormComponent } from './components/articles-search-form/a
     ArticlesListComponent,
     ArticlesViewComponent,
     ArticlesHeaderComponent,
+    DatepickerDirective,
   ]
 })
 export class ArticlesModule { }

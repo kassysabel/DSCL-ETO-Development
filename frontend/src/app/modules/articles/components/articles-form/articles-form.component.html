@@ -33,16 +33,11 @@
         <label for="title" class="block text-sm font-medium text-gray-700"
           >Date<span class="text-red-400">*</span></label
         >
-        <input
-          type="text"
-          name="date"
-          id="date"
-          formControlName="date"
-          [ngClass]="{
-            'border border-red-300': isFieldInvalid('date')
-          }"
-          class="mt-1 px-3 py-2 block w-full shadow-sm rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-        />
+        <app-articles-datepicker
+          [isInvalidDatePicker]="isFieldInvalid('date')"
+          (selectedDate)="setOption($event, 'date')"
+          [prePopulatedDate]="articlesDetailsFrom.get('date').value"
+        ></app-articles-datepicker>
         <div *ngIf="isFieldInvalid('date')">
           <span
             class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block"

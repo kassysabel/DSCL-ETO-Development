@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IArticle } from '@lib/services/articles/articles-interface';
 import { ArticlesService } from '@lib/services/articles/articles.service';
 import { Subject, take } from 'rxjs';
 
@@ -10,7 +9,7 @@ import { Subject, take } from 'rxjs';
   styleUrls: ['./articles-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArticlesFormComponent  implements OnInit  { //AfterViewInit,
+export class ArticlesFormComponent  implements OnInit  {
   private readonly _destroy$ = new Subject<boolean>();
   constructor(
     private formBuilder: FormBuilder,
@@ -91,6 +90,10 @@ export class ArticlesFormComponent  implements OnInit  { //AfterViewInit,
     return this.articlesDetailsFrom.valid;
   }
 
+  setOption(event: { value: string }, key: string) {
+    this.articlesDetailsFrom.get(key).setValue(event);
+  }
+
   markFormGroupTouched(formGroup: FormGroup) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {
       if (control.controls) {
@@ -158,8 +161,5 @@ export class ArticlesFormComponent  implements OnInit  { //AfterViewInit,
 
   formatDateStr(d: any) {
     return d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +("0" + d.getDate()).slice(-2) ;
-
-    // + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
-
   }
 }
