@@ -1,0 +1,21 @@
+<div class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 sm:px-6 flex flex-row justify-between items-center">
+    <h3 class="text-xl font-medium leading-6 text-gray-900">Articles</h3>
+    <!-- <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p> -->
+    <div class="flex flex-row">
+      <app-articles-search-form
+        (searchFilters)="onSearchFilters($event)"
+        (resetFilters)="onResetFilters($event)"
+      ></app-articles-search-form>
+      <span></span>
+      <a
+        [href]="addArticleLink"
+        class="rounded-md border border-transparent bg-indigo-100 py-2 px-4 text-sm font-medium text-indigo-500 shadow-sm hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        >Create New Article</a
+      >
+    </div>
+  </div>
+  <div class="border-t border-gray-200">
+    <app-articles-list-item [articles]="articles"></app-articles-list-item>
+  </div>
+</div>

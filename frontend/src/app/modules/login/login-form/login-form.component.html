@@ -1,0 +1,63 @@
+<form
+  class="tw-w-full tw-block"
+  *ngIf="formLoaded"
+  [formGroup]="loginDetailsFrom"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="grid grid-cols-6 gap-6">
+    <div class="col-span-6">
+      <label for="username" class="block text-sm font-medium text-gray-700"
+        >UserName<span class="text-red-400">*</span></label
+      >
+      <input
+        type="text"
+        name="username"
+        id="username"
+        formControlName="username"
+        [ngClass]="{
+          'border border-red-300': isFieldInvalid('username')
+        }"
+        class="mt-1 px-3 py-2 block w-full shadow-sm rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+      />
+      <div *ngIf="isFieldInvalid('username')">
+        <span class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block">
+          This field is required
+        </span>
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <label for="last-name" class="block text-sm font-medium text-gray-700"
+        >Email<span class="text-red-400">*</span></label
+      >
+      <input
+        type="email"
+        name="last-name"
+        id="last-name"
+        formControlName="email"
+        [ngClass]="{ 'border border-red-300': isFieldInvalid('email') }"
+        class="mt-1 px-3 py-2 block w-full shadow-sm rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+      />
+      <div *ngIf="isFieldInvalid('email')">
+        <span class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block">
+          This field is required
+        </span>
+      </div>
+    </div>
+
+    <div class="col-span-6">
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-75"
+        [disabled]="formSubmitted"
+      >
+        Login
+      </button>
+      <div class="block mt-2" *ngIf="this.error.status">
+        <span class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block">
+          {{ this.error.msg }}
+        </span>
+      </div>
+    </div>
+  </div>
+</form>

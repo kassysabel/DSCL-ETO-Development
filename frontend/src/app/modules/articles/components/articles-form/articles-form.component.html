@@ -1,0 +1,103 @@
+<form
+  class="tw-w-full lg:tw-w-3/4 tw-block"
+  *ngIf="formLoaded"
+  [formGroup]="articlesDetailsFrom"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="sm:overflow-hidden sm:rounded-md">
+    <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+      <div>
+        <label for="title" class="block text-sm font-medium text-gray-700"
+          >Title<span class="text-red-400">*</span></label
+        >
+        <input
+          type="text"
+          name="title"
+          id="title"
+          formControlName="title"
+          [ngClass]="{
+            'border border-red-300': isFieldInvalid('title')
+          }"
+          class="mt-1 px-3 py-2 block w-full shadow-sm rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+        />
+        <div *ngIf="isFieldInvalid('title')">
+          <span
+            class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+
+      <div *ngIf="articleDetails && articleDetails.date">
+        <label for="title" class="block text-sm font-medium text-gray-700"
+          >Date<span class="text-red-400">*</span></label
+        >
+        <app-articles-datepicker
+          [isInvalidDatePicker]="isFieldInvalid('date')"
+          (selectedDate)="setOption($event, 'date')"
+          [prePopulatedDate]="articlesDetailsFrom.get('date').value"
+        ></app-articles-datepicker>
+        <div *ngIf="isFieldInvalid('date')">
+          <span
+            class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+
+      <div>
+        <label for="body" class="block text-sm font-medium text-gray-700"
+          >Body<span class="text-red-400">*</span></label
+        >
+        <textarea
+          name="body"
+          id="body"
+          formControlName="body"
+          rows="5"
+          class="mt-1 px-3 py-2 block w-full shadow-sm rounded-md border-2 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          [ngClass]="{
+            'border border-red-300': isFieldInvalid('body')
+          }"
+        ></textarea>
+        <div *ngIf="isFieldInvalid('body')">
+          <span
+            class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 block"
+          >
+            This field is required
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+      <span
+        *ngIf="this.success.status"
+        class="text-xs bg-green-100 mt-1 rounded-md py-2 px-4 text-green-700 inline-block mr-4"
+      >
+        {{ this.success.msg }}
+      </span>
+      <span
+        *ngIf="this.error.status"
+        class="text-xs bg-red-50 mt-1 rounded-md p-2 text-red-400 inline-block mr-4"
+      >
+        {{ this.error.msg }}
+      </span>
+      <button
+        type="button"
+        class="inline-flex justify-center rounded-md border border-indigo-600 py-2 px-4 text-sm font-medium text-indigo-600 shadow-sm hover:bg-indigo-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-75 mr-4"
+        [disabled]="formSubmitted"
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-75"
+        [disabled]="formSubmitted"
+      >
+        {{ buttonName }}
+      </button>
+    </div>
+  </div>
+</form>
